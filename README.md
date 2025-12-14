@@ -1,5 +1,5 @@
 
-# comeing soon ...
+# coming soon ...
 # catstro is an linux distro for the new linux users
 
 
