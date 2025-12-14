@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATstro Linux - UI Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .design-philosophy {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .design-philosophy h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .design-philosophy p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .ui-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .ui-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .ui-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ui-preview {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ui-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .mock-window {
+            width: 90%;
+            height: 85%;
+            background: #2d2d44;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .mock-titlebar {
+            height: 35px;
+            background: linear-gradient(180deg, #3a3a52 0%, #2d2d44 100%);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 6px;
+        }
+
+        .mock-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .mock-button.close { background: #ff5f56; }
+        .mock-button.minimize { background: #ffbd2e; }
+        .mock-button.maximize { background: #27c93f; }
+
+        .mock-content {
+            padding: 20px;
+            color: #e0e0e0;
+            font-size: 0.85em;
+        }
+
+        .ui-card-content {
+            padding: 25px;
+        }
+
+        .ui-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+        }
+
+        .ui-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .color-palette {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .color-palette h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            height: 100px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .color-code {
+            font-family: monospace;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .design-principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .principle-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .principle-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .principle-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .principle-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .mock-menu {
+            background: #3a3a52;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+        .mock-menu-item {
+            padding: 6px 10px;
+            border-radius: 3px;
+            margin-bottom: 4px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .mock-menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .ui-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/YOUR-USERNAME/YOUR-REPO/master/logo.png" alt="CATstro Linux Logo" class="logo">
+            <h1>🎨 UI Design</h1>
+            <p class="subtitle">Beautiful, Intuitive, and User-Friendly</p>
+        </div>
+
+        <div class="design-philosophy">
+            <h2>Our Design Philosophy</h2>
+            <p>
+                CATstro Linux features <strong>Xfce Desktop Environment</strong> with the sleek <strong>Numix Dark theme</strong>, 
+                combined with a <strong>Windows 11-inspired design</strong> for a familiar yet modern experience. 
+                Enjoy the lightweight performance of Xfce with the aesthetic appeal of contemporary desktop design, 
+                all wrapped in the mysterious charm of our signature cat wallpaper.
+            </p>
+        </div>
+
+        <div class="design-principles">
+            <div class="principle-card">
+                <div class="principle-icon">🖥️</div>
+                <h3>Xfce Desktop</h3>
+                <p>Lightweight and fast. The perfect balance of performance and features.</p>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🌙</div>
+                <h3>Numix Dark Theme</h3>
+                <p>Sleek, modern dark theme that's easy on the eyes and looks professional.</p>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🪟</div>
+                <h3>Win 11 Design</h3>
+                <p>Familiar Windows 11-inspired interface for easy transition and modern aesthetics.</p>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">🐱</div>
+                <h3>Custom Wallpaper</h3>
+                <p>Distinctive CATstro branding with our signature sleek cat design.</p>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; font-size: 2em; margin-bottom: 30px;">UI Components Preview</h2>
+
+        <div class="ui-showcase">
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div style="margin-bottom: 15px;">🐱 Welcome to CATstro Linux</div>
+                            <div style="height: 8px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); border-radius: 4px; width: 80%; margin-bottom: 10px;"></div>
+                            <div style="height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 60%; margin-bottom: 8px;"></div>
+                            <div style="height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>🪟 Xfce Window Manager</h3>
+                    <p>Xfce's lightweight window manager with Numix Dark theme styling and Windows 11-inspired rounded corners and shadows.</p>
+                </div>
+            </div>
+
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div class="mock-menu">
+                                <div class="mock-menu-item">📁 Files</div>
+                                <div class="mock-menu-item">🌐 Browser</div>
+                                <div class="mock-menu-item">⚙️ Settings</div>
+                                <div class="mock-menu-item">💻 Terminal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>🚀 Whisker Menu</h3>
+                    <p>Xfce's powerful Whisker Menu styled with Numix Dark theme. Quick app search and favorites, Windows 11 style.</p>
+                </div>
+            </div>
+
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <div style="width: 40px; height: 40px; background: #667eea; border-radius: 8px;"></div>
+                                <div style="flex: 1;">
+                                    <div style="height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; width: 80%; margin-bottom: 6px;"></div>
+                                    <div style="height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px;">
+                                <div style="width: 40px; height: 40px; background: #764ba2; border-radius: 8px;"></div>
+                                <div style="flex: 1;">
+                                    <div style="height: 6px; background: rgba(255,255,255,0.3); border-radius: 3px; width: 70%; margin-bottom: 6px;"></div>
+                                    <div style="height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 50%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>🔔 Notification Center</h3>
+                    <p>Stay informed with beautiful, non-intrusive notifications. Manage all your alerts in one place.</p>
+                </div>
+            </div>
+
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div style="margin-bottom: 12px; font-size: 0.9em; opacity: 0.8;">$ cat welcome.txt</div>
+                            <div style="margin-bottom: 8px;">Welcome to CATstro Linux! 🐱</div>
+                            <div style="margin-bottom: 12px; color: #4ade80;">System ready.</div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <span style="color: #667eea;">user@catastro</span>
+                                <span style="color: #764ba2;">~</span>
+                                <span style="animation: blink 1s infinite;">▊</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>💻 Xfce Terminal</h3>
+                    <p>Customized Xfce Terminal with Numix Dark colors, transparency effects, and modern font rendering for a sleek coding experience.</p>
+                </div>
+            </div>
+
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">📁</div>
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">🖼️</div>
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">📄</div>
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">🎵</div>
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">🎬</div>
+                                <div style="background: rgba(255,255,255,0.1); height: 50px; border-radius: 6px; display: flex; align-items: center; justify-content: center;">📦</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>📂 Thunar File Manager</h3>
+                    <p>Xfce's Thunar file manager with Numix Dark theme. Fast, lightweight, and featuring Windows 11-style icons and layout.</p>
+                </div>
+            </div>
+
+            <div class="ui-card">
+                <div class="ui-preview">
+                    <div class="mock-window">
+                        <div class="mock-titlebar">
+                            <span class="mock-button close"></span>
+                            <span class="mock-button minimize"></span>
+                            <span class="mock-button maximize"></span>
+                        </div>
+                        <div class="mock-content">
+                            <div style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1);">⚙️ Settings</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-size: 0.85em;">Dark Mode</span>
+                                <div style="width: 40px; height: 20px; background: #667eea; border-radius: 10px; position: relative;">
+                                    <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.85em;">Animations</span>
+                                <div style="width: 40px; height: 20px; background: #667eea; border-radius: 10px; position: relative;">
+                                    <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-card-content">
+                    <h3>⚙️ Xfce Settings Manager</h3>
+                    <p>Complete system configuration through Xfce's comprehensive settings with Numix Dark styling and organized categories.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="color-palette">
+            <h2>🎨 Numix Dark Color Palette</h2>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #2d2d2d; color: white;">Base</div>
+                    <div class="color-label">Numix Dark Base</div>
+                    <div class="color-code">#2d2d2d</div>
+                </div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #333333; color: white;">Surface</div>
+                    <div class="color-label">Window Background</div>
+                    <div class="color-code">#333333</div>
+                </div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #444444; color: white;">Panel</div>
+                    <div class="color-label">Panel Color</div>
+                    <div class="color-code">#444444</div>
+                </div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #d64937; color: white;">Accent</div>
+                    <div class="color-label">Numix Red Accent</div>
+                    <div class="color-code">#d64937</div>
+                </div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #5294e2; color: white;">Selected</div>
+                    <div class="color-label">Selection Blue</div>
+                    <div class="color-code">#5294e2</div>
+                </div>
+                
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #dedede; color: #2d2d2d;">Text</div>
+                    <div class="color-label">Text Color</div>
+                    <div class="color-code">#dedede</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="design-philosophy">
+            <h2>🚀 Desktop Specifications</h2>
+            <p>
+                <strong>Desktop Environment:</strong> Xfce 4.18+ (lightweight and customizable)<br>
+                <strong>Theme:</strong> Numix Dark with custom modifications<br>
+                <strong>Icon Theme:</strong> Numix Circle with Windows 11-inspired additions<br>
+                <strong>Window Manager:</strong> Xfwm4 with rounded corners and blur effects<br>
+                <strong>Panel:</strong> Xfce Panel with Windows 11-style centered taskbar option<br>
+                <strong>Wallpaper:</strong> Custom CATstro cat design with dark aesthetic<br><br>
+                The combination delivers a familiar Windows 11 feel while maintaining Linux flexibility and Xfce's legendary performance!
+            </p>
+        </div>
+    </div>
+
+    <style>
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</body>
+</html>
